@@ -1,38 +1,28 @@
-<div></div>
+
 <div class="row">
-    <div class="container col-4"></div>
-    <div class="container col-4 pt-4 button">
-        <button class="btn btn-primary float-right" type="submit">Button</button>
+  <div class="container col-4 pt-5">
+    <div class="input-group mb-3">
+      <input type="text" (change)="setTaskName($event)" [value]="taskName" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="basic-addon2">
+      <div class="input-group-append">
+        <button class="btn btn-outline-secondary" (click)="addTask()" type="button">Button</button>
+      </div>
     </div>
-    <div class="container col-4"></div>
+  </div>
 </div>
 <div class="row">
-    <div class="container col-4"></div>
     <div class="container col-4 pt-5">
-        <ol class="list-group list-group-numbered">
-            <li class="list-group-item d-flex justify-content-between align-items-start">
-              <div class="ms-2 me-auto">
-                <div class="fw-bold">Subheading</div>
-                Content for list item
-              </div>
-              <span class="badge bg-primary rounded-pill">14</span>
-            </li>
-            <li class="list-group-item d-flex justify-content-between align-items-start">
-              <div class="ms-2 me-auto">
-                <div class="fw-bold">Subheading</div>
-                Content for list item
-              </div>
-              <span class="badge bg-primary rounded-pill">14</span>
-            </li>
-            <li class="list-group-item d-flex justify-content-between align-items-start">
-              <div class="ms-2 me-auto">
-                <div class="fw-bold">Subheading</div>
-                Content for list item
-              </div>
-              <span class="badge bg-primary rounded-pill">14</span>
-            </li>
-          </ol>
+      <div *ngIf="tasks.length === 0">
+        <div class="container col-4">
+            No tasks yet!
+        </div>
+      </div>
+      <ul class="list-group">
+        <li class="list-group-item mb-3 d-flex justify-content-between align-items-center" *ngFor="let task of tasks">{{task}}
+          <div class=" d-flex gap-3">
+            <button class="btn btn-outline-primary" (click)="editTask(task)">Edit</button>
+            <button class="btn btn-danger" (click)="deleteTask(task)">Delete</button>
+          </div>
+        </li>
+      </ul>
     </div>
-    <div class="container col-4"></div>
-
 </div>
